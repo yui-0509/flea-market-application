@@ -2,9 +2,25 @@
     background: #000;
 }
 
-.header__inner {
-    margin: 0 auto;
-    padding: 20px 15px;
-    max-width: 1540px;
+.header__contents {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1540px;
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    max-width: 1540px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}

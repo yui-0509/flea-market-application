@@ -4,12 +4,43 @@
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
+@section('header-contents')
+    <div class="header__center">
+        <form class="form" action="/search" method="GET">
+            <input class="header_content-input" type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
+        </form>
+    </div>
+
+    @auth
+    <div class="header__buttons">
+        <form class="form_button" action="/logout" method="POST">
+            @csrf
+            <button  class="header__button--black" type="submit">ログアウト</button>
+        </form>
+        <a href="/mypage" class="header__button--black">マイページ</a>
+        <a href="/sell" class="header__button--white">出品</a>
+    </div>
+    @endauth
+@endsection
+
 @section('content')
-<div class="title">
-    <h2>一覧</h2>
-</div>
-<form method="POST" action="{{ route('logout') }}">
-    @csrf
-    <button type="submit">ログアウト</button>
-</form>
+    <div class="item-table__header">
+        <a href="/" class="item-table__header-a {{ request('tab') !== 'mylist' ? 'active-tab' : '' }}">おすすめ</a>
+        <a href="/?tab=mylist" class="item-table__header-a {{ request('tab') === 'mylist' ? 'active-tab' : '' }}">マイリスト</a>
+    </div>
+    <div class="items-container">
+        @forelse ($items as $item)
+            <div class="item-card {{ $item->is_sold ? 'sold' : '' }}">
+                <div class="image-wrapper">
+                    <img src="{{ $item->item_image }}" alt="{{ $item->item_name }}">
+                    @if($item->is_sold)
+                        <div class="sold-label">SOLD</div>
+                    @endif
+                </div>
+                <h3 class="item-name">{{ $item->item_name }}</h3>
+            </div>
+        @empty
+            <p>おすすめ商品がありません。</p>
+        @endforelse
+    </div>
 @endsection
