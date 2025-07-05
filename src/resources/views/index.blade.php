@@ -32,12 +32,18 @@
         @forelse ($items as $item)
             <div class="item-card {{ $item->is_sold ? 'sold' : '' }}">
                 <div class="image-wrapper">
-                    <img src="{{ $item->item_image }}" alt="{{ $item->item_name }}">
+                    <a href="{{ route('products.detail', ['item' => $item->id]) }}">
+                        <img src="{{ $item->item_image }}" alt="{{ $item->item_name }}">
+                    </a>
                     @if($item->is_sold)
                         <div class="sold-label">SOLD</div>
                     @endif
                 </div>
-                <h3 class="item-name">{{ $item->item_name }}</h3>
+                <h3 class="item-name">
+                    <a href="{{ route('products.detail', ['item' => $item->id]) }}">
+                        {{ $item->item_name }}
+                    </a>
+                </h3>
             </div>
         @empty
             <p>おすすめ商品がありません。</p>

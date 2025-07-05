@@ -60,7 +60,6 @@
     flex-wrap: wrap;
 }
 
-
 .item-card {
     width: 200px;
     text-align: center;
@@ -99,4 +98,14 @@
 
 .active-tab {
     color: red;
+}
+
+.item-name {
+    margin-top: 4px;
+    text-align: left;
+}
+
+.item-name a{
+    text-decoration: none;
+    color: black;
 }
