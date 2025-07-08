@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Item;
+use App\Models\Comment;
+use App\Models\Like;
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -26,7 +29,9 @@ class ItemController extends Controller
     }
 
     public function detail(Item $item){
-    return view('products.detail', compact('item'));
+        $statusText = Item::STATUS_LIST[$item->status];
+
+        return view('products.detail', compact('item', 'statusText'));
     }
 
     public function create(){
@@ -63,5 +68,51 @@ class ItemController extends Controller
         $item->categories()->attach($request->categories);
 
         return redirect('/');
+    }
+
+    public function addlike(Item $item){
+
+        // すでにいいねしてるかチェック（重複防止）
+        if (!$item->likes()->where('user_id', auth()->id())->exists()) {
+            $item->likes()->create([
+            'user_id' => auth()->id(),]);
+        }
+
+        return response()->json([
+            'message' => 'liked',
+            'count' => $item->likes()->count()]);
+    }
+
+    public function destroy(Item $item){
+
+        $item->likes()->where('user_id', auth()->id())->delete();
+
+        return response()->json([
+            'message' => 'unliked',
+            'count' => $item->likes()->count()
+        ]);
+    }
+
+    public function comment(CommentRequest $request, Item $item){
+
+        $validated = $request->validated();
+
+        $comment = Comment::create([
+            'item_id' => $item->id,
+            'user_id' => auth()->id(),
+            'content' => $validated['content'],
+        ]);
+
+        $comment->load('user.profile');
+
+        return response()->json([
+            'success' => true,
+            'comment_count' => $item->comments()->count(),
+            'comment' => [
+            'author' => $comment->user->name,
+            'content' => nl2br(e($comment->content)),
+            'avatar' => optional($comment->user->profile)->profile_image ?: null,
+        ],
+        ]);
     }
 }

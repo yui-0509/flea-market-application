@@ -21,15 +21,28 @@ class Item extends Model
     ];
 
     public function user(){
-    return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function brand(){
-    return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
 
     public function categories(){
-    return $this->belongsToMany(Category::class, 'item_category', 'item_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'item_category', 'item_id', 'category_id');
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    public function isLikedBy($user){
+        if (!$user) return false;
+        return $this->likes->contains('user_id', $user->id);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 
     public const STATUS_LIST = [

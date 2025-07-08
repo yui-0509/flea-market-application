@@ -13,4 +13,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [ProfileController::class, 'show']);
     Route::get('/sell', [ItemController::class, 'create']);
     Route::post('/sell/store', [ItemController::class, 'store']);
+    Route::post('/item/like/{item}', [ItemController::class, 'addlike']);
+    Route::delete('/item/like/{item}', [ItemController::class, 'destroy']);
+    Route::post('/item/comment/{item}', [ItemController::class, 'comment'])->name('item.comment');
 });
