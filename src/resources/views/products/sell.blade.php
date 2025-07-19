@@ -37,7 +37,7 @@
                 <label class="sell__label">商品画像</label>
                 <div class="item_image-frame">
                     <label for="item_image" class="sell__upload-button">画像を選択する</label>
-                    <input class="sell__input" type="file" name="item_image" id="item_image">
+                    <input class="sell__input" type="file" name="item_image" id="item_image" accept=".jpeg, .jpg, .png">
                     <img id="preview" class="preview-image">
                     <div class="form__error">
                         @error('item_image')

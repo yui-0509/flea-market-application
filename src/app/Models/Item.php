@@ -45,6 +45,10 @@ class Item extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function purchases(){
+        return $this->hasMany(Purchase::class);
+    }
+
     public const STATUS_LIST = [
         1 => '良好',
         2 => '目立った傷や汚れなし',

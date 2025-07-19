@@ -16,7 +16,18 @@ use Illuminate\Support\Facades\Storage;
 class ItemController extends Controller
 {
     public function index(){
-        $items = Item::all();
+
+        if (request('tab') === 'mylist') {
+            // ログインユーザーがいいねした商品のみ取得
+            $items = auth()->user()
+                        ->likes()
+                        ->with('item')
+                        ->get()
+                        ->pluck('item'); // itemだけ取り出す
+        } else {
+            // 通常のおすすめ一覧（仮に新着順）
+            $items = Item::orderBy('created_at', 'desc')->get();
+        }
         return view('index', compact('items'));
     }
 
@@ -42,30 +53,31 @@ class ItemController extends Controller
     }
 
     public function store(ExhibitionRequest $request){
+        $validated = $request->validated();
+
         $item = new Item();
 
-        $path = null;
-        $imageUrl = null;
         if ($request->hasFile('item_image')) {
-            $path = $request->file('item_image')->store('item_images', 's3');
-            $imageUrl = Storage::disk('s3')->url($path);
-            $item->item_image = $imageUrl;
+        $path = $request->file('item_image')->store('item_images', 'public');
+        $item->item_image = 'storage/' . $path;
         }
 
         $item->user_id = Auth::id();
-        $item->item_name = $request->item_name;
+        $item->item_name = $validated['item_name'];
+        $item->description = $validated['description'];
+        $item->status = $validated['status'];
+        $item->price = $validated['price'];
 
         $brandName = $request->input('brand_name');
-        $brand = Brand::firstOrCreate(['brand_name' => $brandName]);
-        $item->brand_id = $brand->id;
 
-        $item->description = $request->description;
-        $item->status = $request->status;
-        $item->price = $request->price;
+        if (!empty($brandName)) {
+            $brand = Brand::firstOrCreate(['brand_name' => $brandName]);
+            $item->brand_id = $brand->id;
+        }
+
 
         $item->save();
-
-        $item->categories()->attach($request->categories);
+        $item->categories()->attach($validated['categories']);
 
         return redirect('/');
     }
@@ -111,8 +123,10 @@ class ItemController extends Controller
             'comment' => [
             'author' => $comment->user->name,
             'content' => nl2br(e($comment->content)),
-            'avatar' => optional($comment->user->profile)->profile_image ?: null,
-        ],
+            'avatar' => $comment->user->profile && $comment->user->profile->profile_image
+            ? asset($comment->user->profile->profile_image)
+            : null,
+            ],
         ]);
     }
 }

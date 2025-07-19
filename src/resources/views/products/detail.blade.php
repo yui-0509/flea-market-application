@@ -27,7 +27,10 @@
     <div class="product-detail-container">
         <div class="left-column">
             <div class="product-image">
-                <img src="{{ $item->item_image }}" alt="{{ $item->item_name }}">
+                <img src="{{ asset($item->item_image) }}" alt="{{ $item->item_name }}" class="{{ $item->is_sold ? 'sold-image' : '' }}">
+                @if($item->is_sold)
+                    <div class="sold-label">SOLD</div>
+                @endif
             </div>
         </div>
 
@@ -60,7 +63,9 @@
                 </span>
             </div>
 
-            <button class="purchase-button">購入手続きへ</button>
+            <a href="{{ route('purchase', ['item' => $item->id]) }}" class="purchase-button">
+                購入手続きへ
+            </a>
 
             <div class="section description-section">
                 <h2>商品説明</h2>
@@ -85,13 +90,13 @@
                         <div class="comment">
                             <div class="comment-avatar">
                                 @if($comment->user->profile && $comment->user->profile->profile_image)
-                                    <img src="{{ $comment->user->profile->profile_image }}" alt="ユーザーアイコン">
+                                    <img src="{{ asset('storage/' . $comment->user->profile->profile_image) }}" alt="ユーザーアイコン">
                                 @else
                                     <div class="default-avatar"></div>
                                 @endif
                             </div>
                             <div class="comment-body">
-                                <div class="comment-author">{{ $comment->user->name }}</div>
+                                <div class="comment-author">{{ $comment->user->username }}</div>
                                 <div class="comment-content">{!! nl2br(e($comment->content)) !!}</div>
                             </div>
                         </div>

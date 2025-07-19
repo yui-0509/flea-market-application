@@ -47,13 +47,23 @@
     flex: 1;
 }
 
+.sold-image {
+    opacity: 0.6;
+    filter: grayscale(60%);
+}
+
+.product-image {
+    position: relative;
+    width: fit-content;
+    margin: 35px auto 0 auto;
+}
+
 .product-image img {
     width: 100%;
     aspect-ratio: 1 / 1;
     background-color: #eee;
     object-fit: cover;
     max-width: 500px;
-    margin: 35px auto 0 auto;
     display: block;
 }
 
@@ -125,6 +135,8 @@
 }
 
 .purchase-button {
+    display: block;
+    text-align: center;
     background-color: #FF5555;
     font-family: 'Inter', sans-serif;
     color: white;
@@ -135,6 +147,7 @@
     border-radius: 4px;
     margin-bottom: 0;
     width: 100%;
+    text-decoration: none;
 }
 
 .description-section {
@@ -250,4 +263,16 @@ p strong {
     color: red;
     margin-top: 10px;
     margin-bottom: 20px;
+}
+
+.sold-label {
+    position: absolute;
+    top: 8px;
+    left: 30px;
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
 }

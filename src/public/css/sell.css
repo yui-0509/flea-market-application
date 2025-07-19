@@ -113,6 +113,10 @@
     position: relative;
 }
 
+.price-yen {
+    margin-top: 10px;
+}
+
 .sell__price-input span {
     position: absolute;
     left: 12px;
@@ -201,4 +205,10 @@ input[type="file"] {
 
 .sell__submit-button:hover {
     background-color: #FF5555;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
 }
