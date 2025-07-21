@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Models\Profile;
 
 class ProfileController extends Controller
 {
@@ -39,6 +40,24 @@ class ProfileController extends Controller
     public function show(){
         $user = auth()->user();
         $profile = $user->profile;
-        return view('profile.show', compact('user', 'profile'));
+
+        $tab = request('tab');
+
+        if ($tab === 'buy') {
+            // 購入した商品（購入履歴）
+            $items = $user->purchases()->with('item')->get()->pluck ('item');
+        } else {
+            // デフォルト：出品した商品
+            $items = $user->items; // itemsリレーション（1対多）
+        }
+
+        return view('profile.show', compact('user', 'profile', 'items', 'tab'));
+    }
+
+    public function edit() {
+        $user = auth()->user();
+        $profile = $user->profile;
+
+        return view('profile.edit', compact('user', 'profile'));
     }
 }

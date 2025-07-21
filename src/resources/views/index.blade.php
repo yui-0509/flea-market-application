@@ -46,7 +46,11 @@
                 </h3>
             </div>
         @empty
-            <p>おすすめ商品がありません。</p>
+            @if(request('tab') === 'mylist')
+                <p>いいねした商品がありません。</p>
+            @else
+                <p>おすすめの商品がありません。</p>
+            @endif
         @endforelse
     </div>
 @endsection
