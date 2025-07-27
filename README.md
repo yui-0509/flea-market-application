@@ -43,8 +43,8 @@ DB_PASSWORD=laravel_pass
 
 ### 使用技術（実行環境）
 
-- php 7.3以上または8.0以上
-- Laravel　8.75以上
+- php 8.1.x
+- Laravel　8.83.29
 - MySQL 8.0.26
 
 ### ER図
