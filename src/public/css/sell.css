@@ -1,0 +1,215 @@
+.header__center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.header_content-input {
+    width: 500px;
+    padding: 10px;
+    padding-left: 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.header__buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header__button--black {
+    background-color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    appearance: none;
+    font-size: 16px;
+}
+
+.header__button--white {
+    background-color: white;
+    border: 1px solid black;
+    padding: 8px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: black;
+}
+
+.sell__wrapper {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.sell__header-title {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.sell__form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sell__section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.section__title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #5F5F5F;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #5F5F5F;
+}
+
+.sell__label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.sell__input,
+.sell__textarea,
+.sell__price-input input,
+.sell__form select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sell__section select.sell__input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    padding: 10px;
+    padding-right: 40px;
+    border-radius: 4px;
+    font-size: 13px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='50,80 15,30 85,30' fill='%235F5F5F'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.sell__textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.sell__price-input {
+    position: relative;
+}
+
+.price-yen {
+    margin-top: 10px;
+}
+
+.sell__price-input span {
+    position: absolute;
+    left: 12px;
+    color: #000000;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.sell__price-input input {
+    padding-left: 28px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.item_image-frame {
+    width: 100%;
+    padding: 50px 30px;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    background-color: hsl(0, 0%, 100%);
+    text-align: center;
+    position: relative;
+}
+
+.sell__upload-button {
+    display: inline-block;
+    border: 1px solid #FF5655;
+    background-color: #fff;
+    color: #FF5655;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.sell__upload-button:hover {
+    background-color: #ffe6e6;
+}
+
+.preview-image {
+    max-width: 100%;
+    display: none;
+    margin: 10px auto 0 auto;
+}
+
+.sell__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.sell__category-checkbox:checked+.sell__category-button {
+    background-color: #FF5655;
+    color: #fff;
+}
+
+.sell__category-button {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 2px 15px;
+    background-color: #fff;
+    color: #FF5655;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1.5px solid #FF5655;
+    transition: all 0.2s;
+}
+
+.sell__submit-button {
+    width: 100%;
+    margin-top: 50px;
+    padding: 15px;
+    background-color: #FF5655;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.sell__submit-button:hover {
+    background-color: #FF5555;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
