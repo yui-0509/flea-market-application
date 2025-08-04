@@ -18,7 +18,6 @@ class EmailVerificationController extends Controller
             event(new Verified($request->user()));
         }
 
-        // ユーザー設定済みかチェック（未設定ならcreateへ）
         if (!$request->user()->profile) {
             return redirect('/mypage/profile/create');
         }

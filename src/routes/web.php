@@ -10,7 +10,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 
-
 Route::post('/register', function (RegisterRequest $request) {
         $creator = app(CreateNewUser::class);
         $user = $creator->create($request->all());
@@ -31,7 +30,7 @@ Route::middleware('auth')->group(function () {
         return view('auth.verify-email');})->name('verification.notice');
     Route::post('/email/verification-notification', function (Request $request) {
         $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', '認証メールを再送信しました！');
+        return back();
     })->middleware(['throttle:6,1'])->name('verification.send');
 
     Route::get('/mypage/profile/create', [ProfileController::class, 'create'])->name('profile.create');

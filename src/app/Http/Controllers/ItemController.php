@@ -6,12 +6,10 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Item;
 use App\Models\Comment;
-use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
