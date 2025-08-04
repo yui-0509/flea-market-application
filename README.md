@@ -1,4 +1,4 @@
-# frea-market-application(模擬案件１)
+# flea-market-application(模擬案件１)
 
 ## アプリ概要
 ユーザーが商品の出品・購入を行えるアプリケーションです。
