@@ -106,7 +106,7 @@ MAIL_USERNAME=null
 MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=no-reply@example.com
-MAIL_FROM_NAME=frea-market-application
+MAIL_FROM_NAME=flea-market-application
 ```
 
 ### 使用技術（実行環境）
