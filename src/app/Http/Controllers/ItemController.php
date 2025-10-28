@@ -89,7 +89,7 @@ class ItemController extends Controller
         return redirect('/');
     }
 
-    public function addlike(Item $item){
+    public function addLike(Item $item){
 
         // すでにいいねしてるかチェック（重複防止）
         if (!$item->likes()->where('user_id', auth()->id())->exists()) {
