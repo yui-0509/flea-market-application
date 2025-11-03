@@ -213,3 +213,119 @@ input[type="file"] {
     text-align: left;
 }
 
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .sell__wrapper {
+        max-width: 800px;
+        padding: 0 40px;
+        margin: 60px auto;
+    }
+
+    .sell__header-title {
+        font-size: 26px;
+        margin-bottom: 40px;
+    }
+
+    .section__title {
+        font-size: 20px;
+    }
+
+    .sell__label {
+        font-size: 15px;
+    }
+
+    .sell__input,
+    .sell__textarea,
+    .sell__form select {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .sell__price-input input {
+        font-size: 16px;
+    }
+
+    .sell__submit-button {
+        font-size: 18px;
+        padding: 15px;
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 850px) and (min-width: 768px) {
+    .sell__wrapper {
+        max-width: 700px;
+        width: 90%;
+        margin: 40px auto;
+        padding: 0 10px;
+    }
+
+    .sell__header-title {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+    .sell__form {
+        gap: 20px;
+    }
+
+    .section__title {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    .sell__input,
+    .sell__textarea,
+    .sell__form select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .sell__textarea {
+        min-height: 80px;
+    }
+
+    .sell__price-input {
+        margin-top: 10px;
+    }
+
+    .sell__price-input input {
+        padding-left: 25px;
+        font-size: 15px;
+    }
+
+    .sell__price-input span {
+        font-size: 15px;
+        left: 10px;
+    }
+
+    .item_image-frame {
+        padding: 30px 15px;
+        font-size: 13px;
+    }
+
+    .sell__upload-button {
+        font-size: 13px;
+        padding: 4px 12px;
+    }
+
+    .preview-image {
+        width: 90%;
+        margin-top: 8px;
+    }
+
+    .sell__categories {
+        gap: 8px;
+    }
+
+    .sell__category-button {
+        padding: 2px 12px;
+        font-size: 12px;
+    }
+
+    .sell__submit-button {
+        font-size: 16px;
+        padding: 12px;
+        margin-top: 40px;
+    }
+}
+

@@ -1,0 +1,642 @@
+/* レイアウト全体 */
+.trade-room-layout {
+    display: flex;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+}
+
+/* 左サイドバー */
+.trade-sidebar {
+    width: 250px;
+    background-color: #868686;
+    color: #FFFFFF;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    padding: 5px;
+    padding-bottom: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #868686;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.trade-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.trade-item {
+    padding: 5px;
+    color: #000000;
+    text-decoration: none;
+    border: 1px solid #EEEFEB;
+    background: #EEEFEB;
+    transition: background-color 0.2s;
+    text-align: center;
+    width: 200px;
+    margin: 0 auto 30px;
+    border-radius: 5px;
+}
+
+/* 右側チャットエリア */
+.trade-chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+/* ヘッダー */
+.trade-room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #5F5F5F;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-avatar {
+    width: 65px;
+    height: 65px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trade-room-title {
+    font-size: 25px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+}
+
+.complete-button {
+    background-color: #FF8282;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.complete-button:hover {
+    background-color: #ff5588;
+}
+
+/* 商品情報 */
+.product-info {
+    display: flex;
+    gap: 30px;
+    padding: 20px 30px;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #5F5F5F;
+}
+
+.product-image {
+    width: 180px;
+    height: 180px;
+    background-color: #d0d0d0;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 14px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 30px;
+}
+
+.product-name {
+    font-size: 35px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: #000000;
+}
+
+.product-price {
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+    margin: 0;
+}
+
+/* チャットエリア */
+.chat-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px;
+    background-color: #FFFFFF;
+}
+
+.no-messages {
+    text-align: center;
+    color: #999;
+    padding: 50px 0;
+}
+
+/* メッセージ */
+.message-wrapper {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-left {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.message-right {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.message-header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+}
+
+.message-header .user-avatar,
+.message-header-right .user-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.user-name {
+    font-size: 16px;
+    color: #000000;
+    font-weight: 700;
+}
+
+.message-bubble {
+    display: inline-block;
+    max-width: 60%;
+    padding: 0 20px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    text-align: left;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.message-own {
+    background-color: #D9D9D9;
+}
+
+.message-image img {
+    max-width: 200px;
+    border-radius: 8px;
+    margin-top: 8px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.message-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.edit-button,
+.delete-button {
+    background: none;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+    text-decoration: underline;
+}
+
+/* 入力エリア */
+.message-form {
+    padding: 20px 30px;
+    background-color: #FFFFFF;
+}
+
+.input-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.message-input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 1px solid #5F5F5F;
+    border-radius: 1px;
+    font-size: 14px;
+}
+
+.message-input::placeholder {
+    color: #7B7B7B;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.message-input:focus {
+    outline: none;
+}
+
+.image-name {
+    font-size: 16px;
+    color: #000000;
+    margin-left: 10px;
+}
+
+.image-button {
+    padding: 5px 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #FF5555;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FF5555;
+    margin-right: -10px;
+}
+
+.image-button:hover {
+    background-color: #fff0f5;
+}
+
+.send-button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -10px;
+}
+
+.send-button img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.send-button:hover {
+    opacity: 0.7;
+}
+
+.error-messages {
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: #ff5555;
+    font-size: 14px;
+    margin: 5px 0;
+    padding: 8px 12px;
+    background-color: #fff0f0;
+    border-left: 3px solid #ff5555;
+    border-radius: 3px;
+}
+
+/* 編集 */
+.edit-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    min-height: 80px;
+    resize: vertical;
+    margin-top: 5px;
+}
+
+.edit-textarea:focus {
+    outline: none;
+}
+
+.edit-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.save-button,
+.cancel-button {
+    padding: 5px 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.save-button {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.save-button:hover {
+    background-color: #5F5F5F;
+}
+
+.cancel-button {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid #f5f5f5;
+}
+
+.cancel-button:hover {
+    background-color: #f5f5f5;
+}
+
+/*削除*/
+.message-deleted {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.deleted-text {
+    color: #999;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* モーダル */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #FDFCE6;
+    border-radius: 15px;
+    padding: 10px 20px;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid #000000;
+}
+
+.modal-header {
+    border-bottom: 1px solid #000000;
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+.modal-header h2 {
+    display: block;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0 0 10px;
+}
+
+.rating-question {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #868686;
+}
+
+/* 星評価 */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 2px;
+    border-bottom: 1px solid #000000;
+    margin: 0 -20px 20px;
+    padding: 0 20px 20px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.star-rating label img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(85%) contrast(90%);
+    transition: filter 0.3s, transform 0.2s;
+}
+
+.star-rating input:checked~label img,
+.star-rating label:hover img,
+.star-rating label:hover~label img {
+    filter: brightness(0) saturate(100%) invert(98%) sepia(54%) saturate(2142%) hue-rotate(7deg) brightness(102%) contrast(99%);
+}
+
+.star-rating label:hover img {
+    transform: scale(1.1);
+}
+
+.submit-rating-button {
+    display: block;
+    margin-left: auto;
+    color: #FFFFFF;
+    background-color: #FF8282;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.submit-rating-button:hover {
+    background-color: #FF5555;
+}
+
+@media (max-width: 850px) {
+    .trade-room-layout {
+        height: calc(100vh - 50px);
+    }
+
+    .trade-sidebar {
+        width: 200px;
+    }
+
+    .sidebar-header {
+        font-size: 24px;
+        padding-bottom: 30px;
+    }
+
+    .trade-item {
+        width: 160px;
+        font-size: 14px;
+    }
+
+    .trade-room-header {
+        padding: 12px 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .trade-room-title {
+        font-size: 20px;
+    }
+
+    .complete-button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    .product-info {
+        padding: 15px 20px;
+        gap: 20px;
+    }
+
+    .product-image {
+        width: 140px;
+        height: 140px;
+    }
+
+    .product-name {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .product-price {
+        font-size: 24px;
+    }
+
+    .chat-area {
+        padding: 20px;
+    }
+
+    .message-bubble {
+        max-width: 70%;
+        padding: 0 15px;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+
+    .message-form {
+        padding: 15px 20px;
+    }
+
+    .input-container {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .message-input {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .image-button {
+        font-size: 16px;
+        padding: 5px 15px;
+    }
+
+    .send-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .send-button img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .modal-content {
+        padding: 10px 15px;
+        max-width: 90%;
+    }
+
+    .modal-header h2 {
+        font-size: 24px;
+    }
+
+    .star-rating label img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .submit-rating-button {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+
+    .trade-room-layout {
+        max-width: 1540px;
+        margin: 0 auto;
+    }
+
+    .chat-area {
+        max-width: 100%;
+    }
+}

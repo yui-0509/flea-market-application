@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Brand;
-use App\Models\Item;
-use App\Models\Comment;
-use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Item;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         if (request('tab') === 'mylist') {
-            if (!auth()->check()) {
+            if (! auth()->check()) {
                 $items = collect();
             } else {
-            $items = auth()->user()
-                        ->likes()
-                        ->with('item')
-                        ->get()
-                        ->pluck('item');
+                $items = auth()->user()
+                    ->likes()
+                    ->with('item')
+                    ->get()
+                    ->pluck('item');
             }
         } else {
 
@@ -35,10 +36,12 @@ class ItemController extends Controller
 
             $items = $itemsQuery->get();
         }
+
         return view('index', compact('items'));
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $keyword = $request->input('keyword');
 
         $items = Item::where('item_name', 'like', "%{$keyword}%")->get();
@@ -46,27 +49,30 @@ class ItemController extends Controller
         return view('index', compact('items'));
     }
 
-    public function detail(Item $item){
+    public function detail(Item $item)
+    {
         $statusText = Item::STATUS_LIST[$item->status];
 
         return view('products.detail', compact('item', 'statusText'));
     }
 
-    public function create(){
+    public function create()
+    {
         $categories = Category::all();
         $statuses = Item::STATUS_LIST;
 
         return view('products.sell', compact('categories', 'statuses'));
     }
 
-    public function store(ExhibitionRequest $request){
+    public function store(ExhibitionRequest $request)
+    {
         $validated = $request->validated();
 
-        $item = new Item();
+        $item = new Item;
 
         if ($request->hasFile('item_image')) {
-        $path = $request->file('item_image')->store('item_images', 'public');
-        $item->item_image = 'storage/' . $path;
+            $path = $request->file('item_image')->store('item_images', 'public');
+            $item->item_image = 'storage/'.$path;
         }
 
         $item->user_id = Auth::id();
@@ -77,11 +83,10 @@ class ItemController extends Controller
 
         $brandName = $request->input('brand_name');
 
-        if (!empty($brandName)) {
+        if (! empty($brandName)) {
             $brand = Brand::firstOrCreate(['brand_name' => $brandName]);
             $item->brand_id = $brand->id;
         }
-
 
         $item->save();
         $item->categories()->attach($validated['categories']);
@@ -89,12 +94,13 @@ class ItemController extends Controller
         return redirect('/');
     }
 
-    public function addLike(Item $item){
+    public function addLike(Item $item)
+    {
 
         // すでにいいねしてるかチェック（重複防止）
-        if (!$item->likes()->where('user_id', auth()->id())->exists()) {
+        if (! $item->likes()->where('user_id', auth()->id())->exists()) {
             $item->likes()->create([
-            'user_id' => auth()->id(),]);
+                'user_id' => auth()->id(), ]);
         }
 
         return response()->json([
@@ -102,17 +108,19 @@ class ItemController extends Controller
             'count' => $item->likes()->count()]);
     }
 
-    public function destroy(Item $item){
+    public function destroy(Item $item)
+    {
 
         $item->likes()->where('user_id', auth()->id())->delete();
 
         return response()->json([
             'message' => 'unliked',
-            'count' => $item->likes()->count()
+            'count' => $item->likes()->count(),
         ]);
     }
 
-    public function comment(CommentRequest $request, Item $item){
+    public function comment(CommentRequest $request, Item $item)
+    {
 
         $validated = $request->validated();
 
@@ -128,11 +136,11 @@ class ItemController extends Controller
             'success' => true,
             'comment_count' => $item->comments()->count(),
             'comment' => [
-            'author' => $comment->user->name,
-            'content' => nl2br(e($comment->content)),
-            'avatar' => $comment->user->profile && $comment->user->profile->profile_image
-            ? asset($comment->user->profile->profile_image)
-            : null,
+                'author' => $comment->user->name,
+                'content' => nl2br(e($comment->content)),
+                'avatar' => $comment->user->profile && $comment->user->profile->profile_image
+                ? asset($comment->user->profile->profile_image)
+                : null,
             ],
         ]);
     }

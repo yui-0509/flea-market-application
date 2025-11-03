@@ -38,3 +38,55 @@
     cursor: pointer;
 }
 
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .verify-container {
+        max-width: 1000px;
+        padding: 50px 30px;
+        margin: 0 auto;
+    }
+
+    .verify-message {
+        font-size: 22px;
+        margin-top: 180px;
+        margin-bottom: 60px;
+    }
+
+    .verify-button {
+        font-size: 18px;
+        padding: 16px 30px;
+        border-radius: 10px;
+    }
+
+    .resend-link {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 850px) and (min-width: 768px) {
+    .verify-container {
+        max-width: 700px;
+        padding: 30px 20px;
+        margin: 0 auto;
+    }
+
+    .verify-message {
+        font-size: 16px;
+        margin-top: 120px;
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+
+    .verify-button {
+        font-size: 16px;
+        padding: 12px 20px;
+        border-radius: 6px;
+        width: 80%;
+        max-width: 400px;
+    }
+
+    .resend-link {
+        font-size: 13px;
+        display: inline-block;
+        margin-top: 40px;
+    }
+}

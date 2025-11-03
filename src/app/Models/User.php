@@ -12,52 +12,78 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'username',
         'email',
         'password',
     ];
 
-    public function profile(){
+    public function profile()
+    {
         return $this->hasOne(Profile::class);
     }
 
-    public function items(){
+    public function items()
+    {
         return $this->hasMany(Item::class);
     }
 
-    public function likes(){
+    public function likes()
+    {
         return $this->hasMany(Like::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function purchases(){
+    public function purchases()
+    {
         return $this->hasMany(Purchase::class);
     }
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    public function tradeRoomParticipants()
+    {
+        return $this->hasMany(TradeRoomParticipant::class);
+    }
+
+    public function tradeMessages()
+    {
+        return $this->hasMany(TradeMessage::class, 'sender_id');
+    }
+
+    public function givenRatings()
+    {
+        return $this->hasMany(TradeRating::class, 'rater_id');
+    }
+
+    public function receivedRatings()
+    {
+        return $this->hasMany(TradeRating::class, 'ratee_id');
+    }
+
     protected $hidden = [
         'password',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function averageRating()
+    {
+        $average = $this->receivedRatings()->avg('stars');
+
+        if ($average === null) {
+            return null; // 評価なし
+        }
+
+        return round($average); // 四捨五入
+    }
+
+    public function hasRatings()
+    {
+        return $this->receivedRatings()->count() > 0;
+    }
 }

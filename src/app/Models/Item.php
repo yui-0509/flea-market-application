@@ -17,35 +17,45 @@ class Item extends Model
         'description',
         'status',
         'item_image',
-        'is_sold'
+        'is_sold',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function brand(){
+    public function brand()
+    {
         return $this->belongsTo(Brand::class);
     }
 
-    public function categories(){
+    public function categories()
+    {
         return $this->belongsToMany(Category::class, 'item_category', 'item_id', 'category_id');
     }
 
-    public function likes(){
+    public function likes()
+    {
         return $this->hasMany(Like::class);
     }
 
-    public function isLikedBy($user){
-        if (!$user) return false;
+    public function isLikedBy($user)
+    {
+        if (! $user) {
+            return false;
+        }
+
         return $this->likes->contains('user_id', $user->id);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function purchases(){
+    public function purchases()
+    {
         return $this->hasMany(Purchase::class);
     }
 
@@ -55,4 +65,14 @@ class Item extends Model
         3 => 'やや傷や汚れあり',
         4 => '状態が悪い',
     ];
+
+    public function activePurchase()
+    {
+        return $this->hasOne(Purchase::class)
+            ->whereIn('status', [
+                Purchase::STATUS_TRADING,
+                Purchase::STATUS_AWAITING_SELLER,
+            ])
+            ->latest();
+    }
 }

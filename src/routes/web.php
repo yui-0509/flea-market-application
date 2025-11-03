@@ -1,15 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Actions\Fortify\CreateNewUser;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\RegisterRequest;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\TradeRatingController;
+use App\Http\Controllers\TradeRoomController;
 use App\Http\Requests\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/', [ItemController::class, 'index']);
@@ -19,7 +19,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     $request->fulfill();
     session()->forget('unauthenticated_user');
 
-    return redirect('/');
+    return redirect('/mypage/profile/create');
 })->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
@@ -33,7 +33,7 @@ Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->name('verification.notice');
 
-Route::get('/email/verify/check', function() {
+Route::get('/email/verify/check', function () {
     $user = Auth::user();
     if (! $user) {
         $session = session('unauthenticated_user');
@@ -55,15 +55,29 @@ Route::get('/email/verify/check', function() {
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/mypage/profile/create', [ProfileController::class, 'create'])->name('profile.create');
     Route::patch('/mypage/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::get('/mypage', [ProfileController::class, 'show']);
+    Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage');
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+
     Route::get('/sell', [ItemController::class, 'create']);
     Route::post('/sell/store', [ItemController::class, 'store']);
     Route::post('/item/like/{item}', [ItemController::class, 'addLike']);
     Route::delete('/item/like/{item}', [ItemController::class, 'destroy']);
     Route::post('/item/comment/{item}', [ItemController::class, 'comment'])->name('item.comment');
+
     Route::get('/purchase/{item}', [PurchaseController::class, 'purchase'])->name('purchase');
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'address'])->name('purchase.address');
     Route::patch('/purchase/address/update/{item}', [PurchaseController::class, 'update'])->name('purchase.update');
     Route::post('/purchase/store/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
+
+    Route::get('/trade-rooms/{room}', [TradeRoomController::class, 'show'])
+        ->name('trade-rooms.show');
+    Route::post('/trade-rooms/{room}/messages', [TradeRoomController::class, 'storeMessage'])
+        ->name('trade-rooms.messages.store');
+    Route::patch('/trade-rooms/{room}/messages/{message}', [TradeRoomController::class, 'updateMessage'])
+        ->name('trade-rooms.messages.update');
+    Route::delete('/trade-rooms/{room}/messages/{message}', [TradeRoomController::class, 'deleteMessage'])
+        ->name('trade-rooms.messages.delete');
+
+    Route::post('/purchases/{purchase}/rating', [TradeRatingController::class, 'store'])
+        ->name('purchases.rating.store');
 });

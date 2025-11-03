@@ -12,14 +12,16 @@ class ItemCategory extends Model
     protected $table = 'item_category';
 
     protected $fillable = [
-        'item_id','category_id'
+        'item_id', 'category_id',
     ];
 
-    public function item(){
+    public function item()
+    {
         return $this->belongsTo(Item::class);
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 }

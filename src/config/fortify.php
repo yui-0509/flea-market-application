@@ -1,6 +1,5 @@
 <?php
 
-use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
 
 return [
@@ -21,14 +20,12 @@ return [
 
     'domain' => null,
 
-
     'middleware' => ['web'],
 
     'limiters' => [
         'login' => 'login',
         'two-factor' => 'two-factor',
     ],
-
 
     'views' => true,
 

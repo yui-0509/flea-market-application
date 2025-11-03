@@ -31,8 +31,9 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    public function messages(){
-        return[
+    public function messages()
+    {
+        return [
             'email.required' => 'メールアドレスを入力してください',
             'password.required' => 'パスワードを入力してください',
         ];
@@ -40,7 +41,7 @@ class LoginRequest extends FormRequest
 
     public function authenticate(): void
     {
-        if (!Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             throw ValidationException::withMessages([
                 'email' => ['ログイン情報が登録されていません。'],
             ]);

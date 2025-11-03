@@ -96,3 +96,79 @@
     color: #fff;
     cursor: pointer;
 }
+
+@media (max-width: 850px) {
+    .header__center {
+        display: none;
+    }
+
+    .header__buttons {
+        gap: 5px;
+    }
+
+    .header__button--black {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .header__button--white {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+
+    .address-form__content {
+        padding: 10px 20px;
+    }
+
+    .address-form__heading {
+        margin-bottom: 30px;
+        font-size: 20px;
+    }
+
+    .form {
+        width: 80%;
+    }
+
+    .form__group {
+        margin-bottom: 30px;
+    }
+
+    .form__group-title {
+        font-size: 14px;
+    }
+
+    .form__input--text input {
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .form__button {
+        margin-top: 50px;
+    }
+
+    .form__button-submit {
+        font-size: 15px;
+        padding: 12px;
+    }
+}
+
+@media (min-width: 851px) and (max-width: 1399px) {
+    .header_content-input {
+        width: 400px;
+    }
+
+    .form {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+
+    .address-form__content {
+        max-width: 1540px;
+    }
+
+    .form {
+        width: 40%;
+    }
+}

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Category;
+use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            'ファッション', '家電', 'インテリア', 'レディース','メンズ', 'コスメ', '本','ゲーム', 'スポーツ', 'キッチン',
+            'ファッション', '家電', 'インテリア', 'レディース', 'メンズ', 'コスメ', '本', 'ゲーム', 'スポーツ', 'キッチン',
             'ハンドメイド', 'アクセサリー', 'おもちゃ', 'ベビー・キッズ',
         ];
 

@@ -24,10 +24,10 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'   => 'required|string',
-            'post_code'  => ['required', 'regex:/^\d{3}-\d{4}$/'],
-            'address'    => 'required|string',
-            'building'   => 'nullable|string',
+            'username' => 'required|string',
+            'post_code' => ['required', 'regex:/^\d{3}-\d{4}$/'],
+            'address' => 'required|string',
+            'building' => 'nullable|string',
         ];
     }
 }

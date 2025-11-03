@@ -65,8 +65,56 @@
     text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .login-form__content {
+        max-width: 800px;
+        padding: 50px 20px;
+    }
+
     .form {
-        width: 50%;
+        width: 60%;
+    }
+
+    .form__input--text input {
+        font-size: 16px;
+    }
+
+    .form__button-submit {
+        font-size: 18px;
+        padding: 12px;
+    }
+}
+
+@media screen and (max-width: 850px) and (min-width: 768px) {
+    .login-form__content {
+        padding: 20px;
+        max-width: 700px;
+    }
+
+    .form {
+        width: 80%;
+        text-align: center;
+    }
+
+    .form__group {
+        margin-bottom: 20px;
+    }
+
+    .form__input--text input {
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .form__button {
+        margin-top: 30px;
+    }
+
+    .form__button-submit {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .register__button-submit {
+        font-size: 13px;
     }
 }

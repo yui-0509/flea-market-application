@@ -2,13 +2,12 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\Category;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
 
 class SellPageTest extends TestCase
 {
@@ -30,8 +29,8 @@ class SellPageTest extends TestCase
         $response->assertRedirect('/login');
     }
 
-    //public function test_user_can_sell_item_successfully()
-    //{
+    // public function test_user_can_sell_item_successfully()
+    // {
 
     //   Storage::fake('public');
 
@@ -61,9 +60,10 @@ class SellPageTest extends TestCase
     //    $this->assertDatabaseCount('item_category', 1);
 
     //    $response->assertRedirect('/');
-    //}
+    // }
 
-    public function test_sell_item_validation_errors(){
+    public function test_sell_item_validation_errors()
+    {
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post('/sell/store', []);

@@ -31,8 +31,9 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    public function messages(){
-        return[
+    public function messages()
+    {
+        return [
             'username.required' => 'お名前を入力してください',
             'email.required' => 'メールアドレスを入力してください',
             'password.required' => 'パスワードを入力してください',
